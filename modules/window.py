@@ -16,7 +16,7 @@ main_window = QMainWindow()
 main_window.setWindowTitle("Weather app")
 main_window.setStyleSheet("background-color: #2b2d30;")
 
-# Центрування вікна на екрані
+
 primary_screen = app.primaryScreen()
 screen_size = primary_screen.size()
 width_screen = screen_size.width()
@@ -36,7 +36,7 @@ main_layout = QVBoxLayout(central)
 main_layout.setContentsMargins(0, 0, 0, 0)
 main_layout.setSpacing(0)
 
-# Список створених фреймів
+
 frames: list[QFrame] = []
 
 
@@ -59,7 +59,7 @@ class CanvasArea(QFrame):
     def mousePressEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
             pos = event.position().toPoint()
-            # Центруємо квадрат відносно курсора та не виходимо за межі полотна
+            
             x = max(0, min(pos.x() - SQUARE_SIZE // 2, self.width() - SQUARE_SIZE))
             y = max(0, min(pos.y() - SQUARE_SIZE // 2, self.height() - SQUARE_SIZE))
 
@@ -82,11 +82,13 @@ def handle_key_press(event):
 
 main_window.keyPressEvent = handle_key_press
 
-# 1. Світле полотно для додавання фреймів
+
 canvas = CanvasArea()
 main_layout.addWidget(canvas, stretch=1)
 
-# 2. Нижня інформаційна панель
+
+
+
 bottom_bar = QFrame()
 bottom_bar.setStyleSheet("background-color: #2b2d30; border: none;")
 
@@ -105,5 +107,6 @@ bottom_layout.addWidget(counter_label)
 
 main_layout.addWidget(bottom_bar)
 
-# Показуємо вікно
+
+
 main_window.show()
